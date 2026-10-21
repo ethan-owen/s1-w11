@@ -2,6 +2,10 @@ import java.awt.*;
 
 public class Eye {
 
+    private int mouseX;
+    private int mouseY;
+    private int mod;
+
     // if you have a lot of instance variables of the same type, you can declare them all at
     //  once by using commas.  You can't set default values, though!
     private int eyeX, eyeY, eyeWidth, eyeHeight, eyeCenterX, eyeCenterY, pupilX, pupilY;
@@ -40,6 +44,9 @@ public class Eye {
 
     
     public void draw (Graphics g) {
+
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setStroke(new BasicStroke(8.0f));
         
         g.setColor(Color.black);
         g.fillOval (eyeX, eyeY, eyeWidth, eyeHeight);
@@ -48,8 +55,27 @@ public class Eye {
         g.fillOval (eyeX + eyeballBorder, eyeY + eyeballBorder, 
                     eyeWidth - (2 * eyeballBorder), eyeHeight - (2 * eyeballBorder));
                     
-        g.setColor(Color.black);
-        g.fillOval(pupilX - pupilRadius, pupilY - pupilRadius, 2 * pupilRadius, 2 * pupilRadius);
+        if (inEye(mouseX, mouseY)){
+            g.fillOval();
+        }else{
+            g.setColor(Color.black);
+            g.fillOval(pupilX - pupilRadius, pupilY - pupilRadius, 2 * pupilRadius, 2 * pupilRadius);
+        
+            if (mod>0){
+                g.setColor(Color.red);
+                g.drawLine(pupilX, pupilY, this.mouseX, this.mouseY);
+            }
+        }
+    }
+
+    public void lasers(int mouseX, int mouseY){
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+        mod ++;
+    }
+
+    public boolean inEye(double mouseX, double mouseY){
+        return (10.0 > (Math.sqrt(Math.pow(mouseX-eyeCenterX, 2) + Math.pow(mouseY-eyeCenterY, 2))));
     }
 
 

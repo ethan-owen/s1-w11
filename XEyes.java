@@ -9,10 +9,10 @@ import java.awt.event.*;
  * of this class.
  */
 
-public class XEyes extends JPanel implements MouseListener{
+public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
 
 
-    private String fileName = "einstein.jpg";
+    private String fileName = "emu.jpg";
 
     private JFrame myFrame;
     private ImageIcon myPic;
@@ -32,9 +32,10 @@ public class XEyes extends JPanel implements MouseListener{
         constructImage(fileName);
 
         // these eyes fit right on Einstein's head.  
-        eye_1 = new Eye(269, 290, 49, 37);
-        eye_2 = new Eye(372, 290, 49, 37);
+        eye_1 = new Eye(177, 182, 100, 100);
+        eye_2 = new Eye(417, 197, 100, 100);
         addMouseListener(this);
+        addMouseMotionListener(this);
         myFrame.setVisible(true);
         }
 
@@ -50,7 +51,7 @@ public class XEyes extends JPanel implements MouseListener{
            
           
     public void paintComponent(Graphics g) {
-  
+
         g.drawImage(myPic.getImage(), 0, 0, this);
         eye_1.draw(g);
         eye_2.draw(g);
@@ -58,22 +59,38 @@ public class XEyes extends JPanel implements MouseListener{
     
     // move the pupil when the mouse is clicked
     public void mouseClicked (MouseEvent event) {
-        eye_1.movePupil(event.getX(), event.getY());
-        eye_2.movePupil(event.getX(), event.getY());
+       // eye_1.movePupil(event.getX(), event.getY());
+       // eye_2.movePupil(event.getX(), event.getY());
+        //System.out.println("x: " + event.getX() + " y: " + event.getY());
         
-        repaint();
+        //repaint();
     }
   
     public void mouseReleased (MouseEvent event) {
     }
     
     public void mousePressed (MouseEvent event) {
+       
     }
     
     public void mouseEntered (MouseEvent event) {
     }
     
     public void mouseExited (MouseEvent event) {
+    }
+
+    public void mouseDragged (MouseEvent event) {
+
+    }
+
+    public void mouseMoved (MouseEvent event) {
+        eye_1.movePupil(event.getX(), event.getY());
+        eye_1.lasers(event.getX(), event.getY());
+        eye_2.movePupil(event.getX(), event.getY());
+        eye_2.lasers(event.getX(), event.getY());
+        //System.out.println("x: " + event.getX() + " y: " + event.getY());
+        
+        repaint();
     }
     
 } // end class
