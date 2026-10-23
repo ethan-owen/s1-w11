@@ -12,7 +12,7 @@ import java.awt.event.*;
 public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
 
 
-    private String fileName = "emu.jpg";
+    private String fileName = "mountrushmore.jpg";
 
     private JFrame myFrame;
     private ImageIcon myPic;
@@ -20,6 +20,13 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
     // Each eye gets an instance variable.
     private Eye eye_1;
     private Eye eye_2;
+    private Eye eye_3;
+    private Eye eye_4;
+    private Eye eye_5;
+    private Eye eye_6;
+    private Eye eye_7;
+    private Eye eye_8;
+    
     
 
     // Constructor: this loads the image "einstein.jpg" in the "images" directory 
@@ -32,8 +39,14 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
         constructImage(fileName);
 
         // these eyes fit right on Einstein's head.  
-        eye_1 = new Eye(177, 182, 100, 100);
-        eye_2 = new Eye(417, 197, 100, 100);
+        eye_1 = new Eye(47, 124, 20, 20);
+        eye_2 = new Eye(102, 119, 20, 20);
+        eye_3 = new Eye(211, 183, 20,  20);
+        eye_4 = new Eye(260, 188, 20, 20);
+        eye_5 = new Eye(342, 274, 20, 20);
+        eye_6 = new Eye(394, 285, 20, 20);
+        eye_7 = new Eye(473, 263, 20, 20);
+        eye_8 = new Eye(522, 255, 20, 20);
         addMouseListener(this);
         addMouseMotionListener(this);
         myFrame.setVisible(true);
@@ -55,6 +68,12 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
         g.drawImage(myPic.getImage(), 0, 0, this);
         eye_1.draw(g);
         eye_2.draw(g);
+        eye_3.draw(g);
+        eye_4.draw(g);
+        eye_5.draw(g);
+        eye_6.draw(g);
+        eye_7.draw(g);
+        eye_8.draw(g);
     }
     
     // move the pupil when the mouse is clicked
@@ -88,6 +107,18 @@ public class XEyes extends JPanel implements MouseListener, MouseMotionListener{
         eye_1.lasers(event.getX(), event.getY());
         eye_2.movePupil(event.getX(), event.getY());
         eye_2.lasers(event.getX(), event.getY());
+        eye_3.movePupil(event.getX(), event.getY());
+        eye_3.lasers(event.getX(), event.getY());
+        eye_4.movePupil(event.getX(), event.getY());
+        eye_4.lasers(event.getX(), event.getY());
+        eye_5.movePupil(event.getX(), event.getY());
+        eye_5.lasers(event.getX(), event.getY());
+        eye_6.movePupil(event.getX(), event.getY());
+        eye_6.lasers(event.getX(), event.getY());
+        eye_7.movePupil(event.getX(), event.getY());
+        eye_7.lasers(event.getX(), event.getY());
+        eye_8.movePupil(event.getX(), event.getY());
+        eye_8.lasers(event.getX(), event.getY());
         //System.out.println("x: " + event.getX() + " y: " + event.getY());
         
         repaint();
